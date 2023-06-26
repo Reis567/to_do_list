@@ -11,11 +11,17 @@ let inputTarefaNomeEdicao = document.querySelector('#inputTarefaNomeEdicao');
 
 inputNovaTarefa.addEventListener('keypress', (e) => {
     if(e.keyCode == 13){
+        if (inputNovaTarefa.value.trim() === '') {
+            alert('O campo de adicionar uma nova tarefa está vazio.');
+            return;
+        }
+
         let tarefa = {
-            nome : inputNovaTarefa.value,
+            nome: inputNovaTarefa.value,
             id: gerarId(),
         }
         adicionarTarefa(tarefa);
+        inputNovaTarefa.value = ''; // Limpar o campo após adicionar a tarefa
     }
 });
 
@@ -25,11 +31,17 @@ janelaEdicaoBtnFechar.addEventListener('click', (e) => {
 
 
 btnAddTarefa.addEventListener('click', (e)=>{
+    if (inputNovaTarefa.value.trim() === '') {
+        alert('O campo de adicionar uma nova tarefa está vazio.');
+        return;
+    }
+
     let tarefa = {
-        nome : inputNovaTarefa.value,
-        id : gerarId(),
+        nome: inputNovaTarefa.value,
+        id: gerarId(),
     }
     adicionarTarefa(tarefa);
+    inputNovaTarefa.value = ''; // Limpar o campo após adicionar a tarefa
 });
 
 btnAtualizarTarefa.addEventListener('click', (e) => {
